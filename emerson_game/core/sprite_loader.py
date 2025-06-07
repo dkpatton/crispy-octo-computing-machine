@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import base64
+import json
+import os
 import json
 from typing import Dict, List
 
@@ -13,6 +16,31 @@ class SpriteLoader:
 
     @staticmethod
     def load_image(path: str) -> pygame.Surface:
+
+        """Load a single image.
+
+        If the PNG file does not exist on disk, a sidecar JSON file with the same
+        path plus ``.json`` is checked. That JSON is expected to contain a base64
+        encoded ``"data"`` field with the PNG bytes. The PNG is written
+        temporarily to disk for loading and then removed.
+        """
+
+        if os.path.exists(path):
+            return pygame.image.load(path).convert_alpha()
+
+        json_path = f"{path}.json"
+        if os.path.exists(json_path):
+            with open(json_path) as fh:
+                meta = json.load(fh)
+            image_bytes = base64.b64decode(meta["data"])
+            with open(path, "wb") as out:
+                out.write(image_bytes)
+            surface = pygame.image.load(path).convert_alpha()
+            os.remove(path)
+            return surface
+
+        raise FileNotFoundError(path)
+
         """Load a single image."""
         return pygame.image.load(path).convert_alpha()
 
