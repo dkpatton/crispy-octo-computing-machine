@@ -5,6 +5,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import json
 from typing import Dict, List
 
 import pygame
@@ -15,6 +16,7 @@ class SpriteLoader:
 
     @staticmethod
     def load_image(path: str) -> pygame.Surface:
+
         """Load a single image.
 
         If the PNG file does not exist on disk, a sidecar JSON file with the same
@@ -38,6 +40,9 @@ class SpriteLoader:
             return surface
 
         raise FileNotFoundError(path)
+
+        """Load a single image."""
+        return pygame.image.load(path).convert_alpha()
 
     @staticmethod
     def load_sheet(json_path: str) -> Dict[str, List[pygame.Surface]]:
