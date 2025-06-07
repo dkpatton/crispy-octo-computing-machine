@@ -1,0 +1,39 @@
+{
+  "folders": [
+    { "path": "." }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true
+    },
+    "terminal.integrated.env.osx": { "PYGAME_HIDE_SUPPORT_PROMPT": "1" },
+    "terminal.integrated.env.linux": { "PYGAME_HIDE_SUPPORT_PROMPT": "1" },
+    "terminal.integrated.env.windows": { "PYGAME_HIDE_SUPPORT_PROMPT": "1" }
+  },
+  "launch": {
+    "configurations": [
+      {
+        "name": "Run Emerson",
+        "type": "python",
+        "request": "launch",
+        "module": "emerson_game",
+        "justMyCode": false,
+        "cwd": "${workspaceFolder}"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run Emerson",
+        "type": "shell",
+        "command": "python -m emerson_game",
+        "group": "build",
+        "presentation": { "reveal": "always" }
+      }
+    ]
+  }
+}
