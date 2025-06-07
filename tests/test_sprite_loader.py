@@ -28,3 +28,20 @@ def test_load_sheet(tmp_path: Path) -> None:
     frames = SpriteLoader.load_sheet(str(meta_path))
     assert "idle" in frames
     assert isinstance(frames["idle"][0], pygame.Surface)
+
+
+def test_load_grid(tmp_path: Path) -> None:
+    pygame.init()
+    meta = {
+        "palette": ["#00000000", "#ff0000"],
+        "grid": [
+            "0110",
+            "1111",
+            "0110",
+            "0000",
+        ],
+    }
+    json_path = tmp_path / "sprite.png.json"
+    json_path.write_text(json.dumps(meta))
+    surface = SpriteLoader.load_image(str(tmp_path / "sprite.png"))
+    assert surface.get_size() == (4, 4)

@@ -2,8 +2,8 @@
   "id": "hero",
   "sprite_sheet": "emerson_game/assets/hero.png",
   "frames": {
-    "idle": [[0, 0, 32, 32], [32, 0, 32, 32]],
-    "walk": [[0, 32, 32, 32], [32, 32, 32, 32]]
+    "idle": [[0, 0, 32, 32]],
+    "walk": [[0, 0, 32, 32]]
   },
   "stats": { "speed": 120, "jump_strength": 300, "health": 3 }
 }
